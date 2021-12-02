@@ -4,18 +4,16 @@ import { readFileSync } from 'fs';
 
 const supergraphSdl = readFileSync('./supergraph.graphql').toString();
 
-const gateway = new ApolloGateway({
-  supergraphSdl,
-});
+const gateway = new ApolloGateway({ supergraphSdl });
 
 const server = new ApolloServer({
   gateway,
 });
 
 server
-  .listen()
-  .then(({ url }) => {
-    console.log(`🚀 Gateway ready at ${url}`);
+  .listen({ port: 4000 })
+  .then(() => {
+    console.log('Gateway server running');
   })
   .catch((err) => {
     console.error(err);

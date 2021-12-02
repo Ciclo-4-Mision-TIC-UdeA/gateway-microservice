@@ -21,9 +21,9 @@ type Author
   @join__type(graph: USERS, key: "id", extension: true)
 {
   id: ID!
-  user: String @join__field(graph: SOCIAL)
   posts: [Post] @join__field(graph: SOCIAL)
   comments: [Comment] @join__field(graph: SOCIAL)
+  user: User @join__field(graph: SOCIAL)
 }
 
 type Comment
@@ -57,7 +57,7 @@ enum Enum_Role
 scalar join__FieldSet
 
 enum join__Graph {
-  SOCIAL @join__graph(name: "social", url: "http://localhost:4002")
+  SOCIAL @join__graph(name: "social", url: "http://localhost:4003")
   USERS @join__graph(name: "users", url: "http://localhost:4001")
 }
 
@@ -83,18 +83,19 @@ type Query
   @join__type(graph: USERS)
 {
   authors: [Author] @join__field(graph: SOCIAL)
-  comment: [Comment] @join__field(graph: SOCIAL)
   posts: [Post] @join__field(graph: SOCIAL)
+  comments: [Comment] @join__field(graph: SOCIAL)
   users: [User] @join__field(graph: USERS)
 }
 
 type User
+  @join__type(graph: SOCIAL, key: "id", extension: true)
   @join__type(graph: USERS, key: "id")
 {
   id: ID!
-  name: String!
-  email: String!
-  role: Enum_Role!
-  profile: Profile
-  author: Author
+  name: String! @join__field(graph: USERS)
+  email: String! @join__field(graph: USERS)
+  role: Enum_Role! @join__field(graph: USERS)
+  profile: Profile @join__field(graph: USERS)
+  author: Author @join__field(graph: USERS)
 }

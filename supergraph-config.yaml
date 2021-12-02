@@ -4,6 +4,6 @@ subgraphs:
     schema:
       subgraph_url: http://localhost:4001
   social:
-    routing_url: http://localhost:4002
+    routing_url: http://localhost:4003
     schema:
-      subgraph_url: http://localhost:4002
+      subgraph_url: http://localhost:4003

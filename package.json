@@ -9,7 +9,6 @@
   "dependencies": {
     "@apollo/gateway": "^2.0.0-alpha.1",
     "apollo-server": "^3.5.0",
-    "concurrently": "^6.4.0",
     "fs": "^0.0.1-security",
     "graphql": "^15.7.2"
   },
